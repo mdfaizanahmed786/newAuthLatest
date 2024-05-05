@@ -5,9 +5,9 @@ import { PrismaClient } from "@prisma/client";
 import Credentials from "next-auth/providers/credentials";
 import { signInSchema } from "./lib/zod";
 import { ZodError } from "zod";
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  // adapter:  PrismaAdapter(prisma),
+  adapter:  PrismaAdapter(prisma),
   providers: [
     Google,
     Credentials({
