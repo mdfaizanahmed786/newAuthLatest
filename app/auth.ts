@@ -41,8 +41,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           // return user object with the their profile data
           return {
             id: "1",
-            name: "Faizan ahmed",
-            email: "faizan@gmail.com",
           };
         } catch (error) {
           if (error instanceof ZodError) {
@@ -54,5 +52,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   pages: {
     signIn: "/login",
+  },
+  callbacks: {
+    session: ({ session, token }: any) => {
+      if (session.user) {
+        // need to pass here the actual user id (with token.sub)
+        session.user.userId = token.sub;
+      }
+      return session;
+    },
   },
 });

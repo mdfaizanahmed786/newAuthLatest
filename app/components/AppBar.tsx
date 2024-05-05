@@ -4,6 +4,7 @@ import { SignOut } from "./SignOut";
 
 async function AppBar() {
   const session = await auth();
+  console.log(session, "THIS IS SESSION........")
 
   if (!session)
     return (
@@ -11,6 +12,7 @@ async function AppBar() {
         <Link href="/login">Signin</Link>
       </div>
     );
+
 
   return (
     <div>
